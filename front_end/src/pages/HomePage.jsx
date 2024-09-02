@@ -2,6 +2,7 @@ import IconMoney from '../assets/img/icon-money.webp';
 import IconChat from '../assets/img/icon-chat.webp';
 import IconSecurity from '../assets/img/icon-security.webp';
 import '../styles/Pages/HomePage.css';
+import Feature from '../components/Feature';
 
 const data = [
     {
@@ -44,15 +45,7 @@ export default function HomePage() {
             <section className="features">
                 <h2 className="sr-only">Features</h2>
                 {data.map((feature, index) => (
-                    <div key={index} className="feature-item">
-                        <img
-                            src={feature.src}  
-                            alt={feature.altImg}
-                            className="feature-icon"
-                        />
-                        <h3 className="feature-item-title">{feature.title}</h3>
-                        <p>{feature.description}</p>
-                    </div>
+                    <Feature key={index} feature={feature}/>
                 ))}
             </section>
         </>
