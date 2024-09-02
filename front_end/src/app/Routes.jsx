@@ -2,6 +2,7 @@ import { createBrowserRouter, Navigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import Header from "../layouts/Header";
 import HomePage from "../pages/HomePage";
+import Error from "../pages/ErrorPage"
 import User from "../pages/User";
 import Login from "../pages/Login";
 import Footer from "../layouts/Footer";
