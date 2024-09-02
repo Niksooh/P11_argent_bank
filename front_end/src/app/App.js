@@ -2,9 +2,8 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "../layouts/Header";
 import HomePage from "../pages/HomePage";
-import SignOut from "../pages/SignOut";
 import User from "../pages/User";
-import LoginPage from "../pages/Login";
+import Login from "../pages/Login";
 import Footer from "../layouts/Footer";
 
 export default function App() {
@@ -13,8 +12,7 @@ export default function App() {
       <Header />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/signOut" element={<SignOut />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/user" element={<User />} />
       </Routes>
       <Footer />
