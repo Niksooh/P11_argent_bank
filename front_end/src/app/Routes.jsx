@@ -56,9 +56,7 @@ const router = createBrowserRouter([
         path: '/user',
         element: (
             <Layout>
-                <PrivateRoute>
                     <User />
-                </PrivateRoute>
             </Layout>
         ),
     },

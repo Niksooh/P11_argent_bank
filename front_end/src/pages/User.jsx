@@ -17,7 +17,7 @@ export default function User() {
 
     return (
         <main className="bg-dark">
-            <h1>
+            <h1 className='UserH1'>
                 Welcome back
                 <br />
                 {`${user.firstName} ${user.lastName}!`}

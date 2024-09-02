@@ -14,6 +14,15 @@ export default function Login() {
         setPassword(e.target.value);
     };
 
+    const auth = (e) => {
+        e.preventDefault();
+        fetch('http://localhost:3001/api/v1/user/login', {
+            method: 'POST',
+            body: JSON.stringify({ email: email, password: password})
+        }). then (response => response.json()). then (response => console.log (response))
+    }
+
+
     return (
         <main class="main bg-dark">
         <section className="sign-in-content">
@@ -32,7 +41,7 @@ export default function Login() {
                     <input type="checkbox" id="remember-me" />
                     <label htmlFor="remember-me">Remember me</label>
                 </div>
-                <button type="submit" className="sign-in-button">Sign In</button>
+                <button type="submit" className="sign-in-button" onClick={ auth }>Sign In</button>
             </form>
         </section>
     </main>
