@@ -1,21 +1,17 @@
-import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Header from "../layouts/Header";
-import HomePage from "../pages/HomePage";
-import User from "../pages/User";
-import Login from "../pages/Login";
-import Footer from "../layouts/Footer";
+import { RouterProvider } from 'react-router-dom'
+import { Provider } from 'react-redux'
+import { store, persistor } from '../Redux/store'
+import { PersistGate } from 'redux-persist/integration/react'
+import router from '../utils/routes/AppRoutes'
 
-export default function App() {
-  return (
-    <BrowserRouter>
-      <Header />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/user" element={<User />} />
-      </Routes>
-      <Footer />
-    </BrowserRouter>
-  );
+function App() {
+    return (
+        <Provider store={store}>
+            <PersistGate loading={null} persistor={persistor}>
+                <RouterProvider router={router} />
+            </PersistGate>
+        </Provider>
+    )
 }
+
+export default App
