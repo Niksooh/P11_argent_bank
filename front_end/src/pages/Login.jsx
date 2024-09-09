@@ -32,7 +32,7 @@ export default function Login() {
         .then(response => {
             if (!response.ok) {
                 if (response.status === 401) {
-                    throw new Error('Email ou mot de passe incorrect');
+                    throw new Error('Incorrect email or password');
                 } else {
                     throw new Error('Incorrect email or password');
                 }
