@@ -54,7 +54,7 @@ export default function Login() {
                 })
                 .then(response => {
                     if (!response.ok) {
-                        throw new Error('Erreur HTTP lors de la récupération du profil');
+                        throw new Error('HTTP error while retrieving profile');
                     }
                     return response.json();
                 })
@@ -63,10 +63,10 @@ export default function Login() {
                     navigate('/user');
                 })
                 .catch(error => {
-                    console.error('Erreur lors de la récupération des données utilisateur :', error.message);
+                    console.error('Error retrieving user data:', error.message);
                 });
             } else {
-                console.error('Login échoué : Token non reçu.', data);
+                console.error('Login failed: Token not received.', data);
             }
         })
         .catch(error => {
