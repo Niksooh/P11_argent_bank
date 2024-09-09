@@ -1,4 +1,3 @@
-// src/pages/User.jsx
 import React, { useState } from 'react';
 import InformationAccount from '../components/InformationAccount';
 import EditProfileForm from '../components/EditProfileForm';
