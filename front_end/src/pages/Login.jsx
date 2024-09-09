@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 export default function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -20,7 +21,6 @@ export default function Login() {
 
     const auth = (e) => {
         e.preventDefault();
-        console.log("Tentative de connexion...");
 
         fetch('http://localhost:3001/api/v1/user/login', {
             method: 'POST',
@@ -31,42 +31,35 @@ export default function Login() {
         })
         .then(response => {
             if (!response.ok) {
-                throw new Error(`Erreur HTTP : ${response.status}`);
+                if (response.status === 401) {
+                    throw new Error('Email ou mot de passe incorrect');
+                } else {
+                    throw new Error('Incorrect email or password');
+                }
             }
             return response.json();
         })
         .then(data => {
-            console.log('Données JSON reçues :', data);
-
-            // Ici on accède au token via data.body.token
             if (data && data.body && data.body.token) {
                 const token = data.body.token;
 
-                // Dispatch du token pour la gestion de l'authentification
                 dispatch(loginSuccess({ token }));
-                console.log('Login réussi, token :', token);
 
-                // Deuxième fetch pour récupérer les données utilisateur avec le token
                 fetch('http://localhost:3001/api/v1/user/profile', {
-                    method: 'POST',  // Dans ta doc, c'est un POST pour récupérer le profil
+                    method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}`,  // On passe le token dans les headers
+                        'Authorization': `Bearer ${token}`,
                     }
                 })
                 .then(response => {
                     if (!response.ok) {
-                        throw new Error(`Erreur HTTP lors de la récupération du profil : ${response.status}`);
+                        throw new Error('Erreur HTTP lors de la récupération du profil');
                     }
                     return response.json();
                 })
                 .then(userData => {
-                    console.log('Données utilisateur :', userData);
-
-                    // Dispatch des données utilisateur dans Redux
                     dispatch(setUserData({ userData }));
-
-                    // Redirection vers la page utilisateur
                     navigate('/user');
                 })
                 .catch(error => {
@@ -77,7 +70,7 @@ export default function Login() {
             }
         })
         .catch(error => {
-            console.error('Erreur lors de la connexion :', error.message);
+            setError(error.message);
         });
     };
 
@@ -104,6 +97,7 @@ export default function Login() {
                             value={password}
                             onChange={passwordChange}
                         />
+                        {error && <p className="error-message">{error}</p>}
                     </div>
                     <div className="input-remember">
                         <input type="checkbox" id="remember-me" />
