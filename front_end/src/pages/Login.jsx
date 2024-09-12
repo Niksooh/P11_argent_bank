@@ -59,7 +59,7 @@ export default function Login() {
                     return response.json();
                 })
                 .then(userData => {
-                    dispatch(setUserData({ userData }));
+                    dispatch(setUserData( userData.body ));
                     navigate('/user');
                 })
                 .catch(error => {

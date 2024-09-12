@@ -4,10 +4,11 @@ import '../styles/Components/EditProfileForm.css';
 function EditProfileForm({ user, onSave, onCancel }) {
   const [firstName, setFirstName] = useState(user.firstName || '');
   const [lastName, setLastName] = useState(user.lastName || '');
+  const [userName, setUserName] = useState(user.userName || '');
 
   const handleSave = (e) => {
     e.preventDefault();
-    onSave({ firstName, lastName });
+    onSave({ firstName, lastName, userName });
   };
 
   return (
@@ -15,21 +16,30 @@ function EditProfileForm({ user, onSave, onCancel }) {
       <h2>Edit Profile</h2>
       <form onSubmit={handleSave}>
         <div className="input-wrapper">
+          <label htmlFor="userName">User Name</label>
+          <input
+            type="text"
+            id="userName"
+            value={userName}
+            onChange={(e) => setUserName(e.target.value)}
+          />
+        </div>
+        <div className="input-wrapper">
           <label htmlFor="firstName">First Name</label>
           <input
+            readOnly
             type="text"
             id="firstName"
             value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
           />
         </div>
         <div className="input-wrapper">
           <label htmlFor="lastName">Last Name</label>
           <input
+            readOnly
             type="text"
             id="lastName"
             value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
           />
         </div>
         <div className="form-buttons">
