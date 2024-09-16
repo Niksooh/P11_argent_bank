@@ -30,8 +30,8 @@ export default function User() {
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${userData.token}`,
-            body: JSON.stringify({ userName : updatedUser.userName})
-        }
+        },
+        body: JSON.stringify({ userName : updatedUser.userName})
     })
     .then(response => { console.log(response)
         if (!response.ok) {

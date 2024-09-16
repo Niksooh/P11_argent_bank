@@ -18,7 +18,7 @@ const userSlice = createSlice({
 
         },
         setUserData: (state, action) => {
-            const userData  = action.payload;
+            const userData  = action.payload; console.log(userData)
             state.firstName = userData.firstName || '';
             state.lastName = userData.lastName || '';
             state.email = userData.email || '';
@@ -32,7 +32,7 @@ const userSlice = createSlice({
             state.email = '';
             state.userName = '';
         },
-        updateProfile: (state, action) => { console.log (action.payload)
+        updateProfile: (state, action) => {
             state.userName = action.payload.userName
         }
     },
