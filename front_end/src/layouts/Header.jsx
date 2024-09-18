@@ -10,8 +10,8 @@ import { logout } from '../reducers/userReducer';
 export default function Header() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const isAuth = useSelector(state => state.user.isAuth);
-  const userName = useSelector(state => state.user.userName);
+  const { isAuth, userName } = useSelector(state => state.user);
+
 
   const handleLogout = () => {
     dispatch(logout());

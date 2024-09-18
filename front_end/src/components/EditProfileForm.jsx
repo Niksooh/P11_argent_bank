@@ -2,13 +2,12 @@ import React, { useState } from 'react';
 import '../styles/Components/EditProfileForm.css';
 
 function EditProfileForm({ user, onSave, onCancel }) {
-  const [firstName, setFirstName] = useState(user.firstName || '');
-  const [lastName, setLastName] = useState(user.lastName || '');
+
   const [userName, setUserName] = useState(user.userName || '');
 
   const handleSave = (e) => {
     e.preventDefault();
-    onSave({ firstName, lastName, userName });
+    onSave({ firstName : user.firstName, lastName : user.lastName, userName });
   };
 
   return (
@@ -30,7 +29,7 @@ function EditProfileForm({ user, onSave, onCancel }) {
             readOnly
             type="text"
             id="firstName"
-            value={firstName}
+            value={user.firstName}
           />
         </div>
         <div className="input-wrapper">
@@ -39,7 +38,7 @@ function EditProfileForm({ user, onSave, onCancel }) {
             readOnly
             type="text"
             id="lastName"
-            value={lastName}
+            value={user.lastName}
           />
         </div>
         <div className="form-buttons">
